@@ -17,10 +17,11 @@
                     </div>
                 </div>
             </div>
-            
+        
             <div class="Segment">
                 <div class="card  border-0">
-                    <form action="">
+                    <form action="postSku" method="POST">
+                        @csrf
                          <div class="fomr-group row">
                             <label for="" class="col-sm-4 col-form-label labelText">SKU ID</label>
                             <div class="col-sm-2">
@@ -31,39 +32,38 @@
                          <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">SKU Code</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" class="form-control" placeholder="" name="skuCode">
                             </div>
                         </div>
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">SKU Name</label>
                             <div class="col-sm-3 ">
-                                <input type="text" class="form-control" placeholder="Main Product Name /auto" >
+                                <input type="text" class="form-control" placeholder="Main Product Name /auto" name="skuName">
                             </div>
                         </div>
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">MRP</label>
                             <div class="col-sm-1">
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" class="form-control" placeholder="" name="mrp">
                             </div>
                         </div>
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">Distributor Price</label>
                             <div class="col-sm-1">
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" class="form-control" placeholder="" name="distPrice">
                             </div>
                         </div>
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">Weight/Volume</label>
 
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" >
+                                <input type="text" class="form-control" name="weight">
                             </div>
 
                             <div class="col-sm-2">
-                                <select name="" id="" class="form-select">
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <select name="unit" id="" class="form-select">
+                                <option value="liter">Liter</option>
+                                <option value="kg">Kilo Gram</option>
                                 </select>
                             </div>
 

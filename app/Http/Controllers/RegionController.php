@@ -13,8 +13,6 @@ class RegionController extends Controller
         function getZone(){
             $data=zone::get();
 
-           
-            
             return view('region.region',['data'=>$data]);
         }
 

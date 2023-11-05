@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\http\Controllers\ZoneController;
 use App\http\Controllers\RegionController;
-
+use App\http\Controllers\TerritoryController;
+use App\http\Controllers\UserRegsController;
+use App\http\Controllers\ProductRegController;
+use App\http\Controllers\AIPOController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,14 +22,25 @@ use App\http\Controllers\RegionController;
 //     return view('welcome');
 // });
 
-Route::view('/addZone', 'zone.zone');
-// Route::view('/addRegion', 'region.region');
-Route::view('/addTerritory', 'territory.territory');
-Route::view('/addUser', 'user.user');
-Route::view('/addSku', 'sku.sku');
-Route::view('/aipo', 'AIPO.AIPO');
 
+// Route::view('/addRegion', 'region.region');
+// Route::view('/addTerritory', 'territory.territory');
+
+
+Route::view('/addZone', 'zone.zone');
 Route::post('/postZone',[ZoneController::class,'store']);
 
-Route::post('/postRegion',[RegionController::class,'store']);
 Route::get('/addRegion',[RegionController::class,'getZone']);
+Route::post('/postRegion',[RegionController::class,'store']);
+
+Route::get('/addTerritory',[TerritoryController::class,'getTerritory']);
+Route::post('/postTerritory',[TerritoryController::class,'store']);
+
+Route::get('/getUser',[UserRegsController::class,'getUser']);
+Route::post('/postUser',[UserRegsController::class,'store']);
+
+Route::view('/addSku', 'sku.sku');
+Route::post('/postSku',[ProductRegController::class,'store']);
+
+Route::get('/getAIPO',[AIPOController::class,'getAIPO']);
+Route::post('/postSku',[AIPOController::class,'store']);

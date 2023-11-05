@@ -17,73 +17,76 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="Segment">
                 <div class="card  border-0">
-                    <form action="">
+                    <form action="postUser" method="POST">
+                        @csrf
                          <div class="fomr-group row">
                             <label for="" class="col-sm-4 col-form-label labelText">Name</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" class="form-control" placeholder="" name="name">
                             </div>
                         </div> 
 
                          <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">NIC</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" class="form-control" placeholder="" name="nic">
                             </div>
                         </div>
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">Address</label>
                             <div class="col-sm-6 col-xs-2">
-                                <input type="text" class="form-control" placeholder="" >
+                                <input type="text" class="form-control" placeholder="" name="address">
                             </div>
                         </div>
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">Mobile</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" placeholder="">
+                                <input type="text" class="form-control" placeholder="" name="mobile">
                             </div>
                         </div>
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">E-Mail</label>
                             <div class="col-sm-4">
-                                <input type="email" class="form-control" placeholder="">
+                                <input type="email" class="form-control" placeholder="" name="email">
                             </div>
                         </div>
                         <div class="form-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">Gender</label>
                             <div class="col-sm-3">
-                                <select name="" id="" class="form-select">
+                                <select name="gender" id="" class="form-select">
                                 <option selected>Select</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="male">male</option>
+                                <option value="female">female</option>
+                                <option value="other">other</option>
+                                <option value="prefer_not_to_say">prefer not to say</option>
                                 </select>
+                                
                             </div>
                         </div> 
                         <div class="form-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">Territory</label>
                             <div class="col-sm-3">
-                                <select name="" id="" class="form-select">
+                                <select name="territory" id="" class="form-select">
                                 <option selected>Select</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                @foreach($terData as $tData)
+                                <option value="{{$tData->id}}">{{$tData->terrName}}</option>
+                                @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">User Name</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" >
+                                <input type="text" class="form-control" name="userName">
                             </div>
                         </div> 
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-4 col-form-label labelText">Password</label>
                             <div class="col-sm-3">
-                                <input type="password" class="form-control" placeholder="">
+                                <input type="password" class="form-control" placeholder="" name="password">
                             </div>
                         </div>    
                         <div class="form-group row pt-4">

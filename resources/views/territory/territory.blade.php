@@ -21,42 +21,43 @@
                     </div>
                 </div>
             </div>
-            
+           
             <div class="Segment">
                 <div class="card  border-0">
-                    <form action="">
+                    <form action="postTerritory" method="POST">
+                        @csrf
                         <div class="form-group row">
                             <label for="" class="col-sm-5 col-form-label labelText">Zone</label>
                             <div class="col-sm-3">
-                                <select name="" id="" class="form-select">
-                                <option selected>Select</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <select name="zoneId" id="" class="form-select">
+                                    <option selected>Select</option>
+                                    @foreach($data as $zones)
+                                    <option value="{{$zones->id}}">{{$zones->longDesc}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div> 
                         <div class="form-group row pt-2">
                             <label for="" class="col-sm-5 col-form-label labelText">Region</label>
                             <div class="col-sm-3">
-                                <select name="" id="" class="form-select">
+                                <select name="regId" id="" class="form-select">
+                                @foreach($regData as $regions)
                                 <option selected>Select</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="{{$regions->id}}">{{$regions->regName}}</option>
+                                @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-5 col-form-label labelText">Territory Code</label>
                             <div class="col-sm-2">
-                                <input type="password" class="form-control" placeholder="Automatically">
+                                <input type="text" class="form-control" placeholder="Automatically">
                             </div>
                         </div> 
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-5 col-form-label labelText">Territory Name</label>
                             <div class="col-sm-3">
-                                <input type="password" class="form-control" placeholder="Ex. TERRITORY 1">
+                                <input type="text" name="terrName" class="form-control" placeholder="Ex. TERRITORY 1">
                             </div>
                         </div>   
                         <div class="form-group row pt-4">
