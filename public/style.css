@@ -1,0 +1,87 @@
+.labelText{
+    text-align: right;
+    align-items: right;
+    font-weight: bold;
+}
+
+.HeadText{
+    padding-bottom: 30px;
+}
+
+.WelcomeText{
+    padding-top: 5vh;
+    align-items: right;
+    text-align: right;
+    padding-right: 30px;
+    font-size: xx-small;
+    padding-bottom: 10vh;
+}
+
+.cardCenter{
+    width: 200vh;
+    align-items: center;
+}
+.card{
+    width: 200vh;
+
+}
+
+.Segment{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submiClass{
+    background-color: rgba(78,165,50,255);
+    border-radius: 3px;
+    border: none;
+    padding: 3px 20px;
+    color: white;
+    font-weight: 400;
+    font-size: small;
+}
+
+
+.AddRegion{
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.form-select{
+    width: 50vh;
+}
+.Set{
+    width: 110px;
+    align-items: left;
+    justify-content: left;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.548);
+    border-radius: 3px;
+    border: 1px solid black;
+    border: none;
+    height: 5vh;
+    color: rgba(0, 0, 0, 0.644);
+}
+
+.labelSet{
+    text-align: right;
+}
+
+.cardForSearch{
+    width: 250vh;
+    text-align: center;
+    padding-left: 40vh;
+    padding-right: 40vh;
+}
+
+.SearchSetupOne{
+    padding-top: 8vh;
+    display: flex;
+    justify-content: center;
+}
+
+.SearchSetupTwo{
+    padding-top: 5vh;
+    display: flex;
+    justify-content: center;
+}
