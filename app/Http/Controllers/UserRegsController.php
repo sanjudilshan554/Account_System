@@ -43,6 +43,30 @@ class UserRegsController extends Controller
             'password'=>$validate_data['password'],
         ]);
 
-        return view('user.user');
+        return redirect()->route('userRegistration');
+    }
+
+    function login(Request $request){
+
+        $un=$request->username;
+        $pw=$request->password;
+
+        $user=userRegs::where('userName',$un)
+        ->get()
+        ->first();
+
+        if($un == 'admin' && $pw == 'admin'){
+            return view('adminPage.adminPage',['message'=>'verified admin login']);
+        }
+        elseif($user){
+            if($user->userName == $un && $user->password == $pw){
+                return view('userPage.userPage',['message'=>'verified admin login']);
+            }else{
+                return redirect()->route('login',['message'=>'invalid username or password']);
+            }
+        }
+        else{
+            return redirect()->route('login',['message'=>'Try again later']);
+        }   
     }
 }

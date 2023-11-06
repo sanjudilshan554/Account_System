@@ -9,7 +9,7 @@ use App\models\productReg;
 class ProductRegController extends Controller
 {
     function store(Request $request){
-
+        
         $validate_data=$request->validate([
             'skuCode'=>['required'],
             'skuName'=>['required'],
@@ -29,6 +29,6 @@ class ProductRegController extends Controller
             'unit'=>$validate_data['unit'],
         ]);
 
-        return view('user.user');
+        return redirect()->route('ProductRegistration');
     }
 }

@@ -17,38 +17,37 @@
                 <div class="col-sm-6"></div>
                 <div class="col-sm-6">
                     <div class="HeadText">
-                        <h4><b>ADD ZONE</b></h4>
+                        <h4><b>UPDATE ZONE</b></h4>
                     </div>
                 </div>
             </div>
             
             <div class="Segment">
                 <div class="card  border-0">
-                    <form action="postZone" method="POST">
+                    <form action="" method="POST">
                     @csrf
                         <div class="fomr-group row">
                             <label for="" class="col-sm-6 col-form-label labelText">Zone Code</label>
                             <div class="col-sm-2">
-                                <input type="password" class="form-control" placeholder="Automatically" name="">
+                                <input type="text" class="form-control" placeholder="Automatically" name="id" value="{{$zone[0]['id']}}" readonly>
                             </div>
                         </div> 
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-6 col-form-label labelText">Zone Long Description</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" placeholder="Ex. ZONE 1" name="longDescription">
+                                <input type="text" class="form-control" placeholder="Ex. ZONE 1" name="longDesc"  value="{{$zone[0]['longDesc']}}">
                             </div>
                         </div>  
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-6 col-form-label labelText">Short Description</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" placeholder="Ex. Z01" name="shortDescription">
+                                <input type="text" class="form-control" placeholder="Ex. Z01" name="shortDesc"  value="{{$zone[0]['shortDesc']}}">
                             </div>
                         </div>  
                         <div class="fomr-group row pt-4">
                             <label for="" class="col-sm-6 col-form-label labelText"></label>
                             <div class="col-sm-6">
-                                <input type="submit" class="submiClass" value="SAVE">
-                                <a href="{{route('zoneView')}}" class="submiClass view">VIEW</a>
+                                <input type="submit" class="submiClass view" value="UPDATE">
                             </div>
                         </div>
                     </form>

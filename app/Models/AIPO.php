@@ -14,7 +14,7 @@ class AIPO extends Model
         'regId',
         'terId',
         'distributor',
-        'date',
+        'dateTime',
         'remark',
         'skuCode',
         'skuName',

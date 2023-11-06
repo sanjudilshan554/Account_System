@@ -12,22 +12,11 @@
             <form action="postAIPO" method="POST"></form>
             @csrf
                 <div class="AddRegion pt-4">
-                    <h2><b>ADD INDIVIDUAL PURCHASE ORDER</b></h2>
+                    <h2><b>PURCHASE ORDER VIEW</b></h2>
                 </div>
-                <div class="SearchSetupOne">
-                    <div class="cardForSearch">
+                <div class="SearchSetupOneForPOV">
+                    <div class="cardForSearchForPOV">
                         <div class="row">
-                            <div class="col">
-                                <div class="">
-                                    <label for="staticEmail" class=""><b>Zone</b></label>
-                                    <select class="Set" aria-label="Default select example" name="zoneId">
-                                        <option selected>Select</option>
-                                        @foreach($zone as $zones)
-                                        <option value="{{$zones->id}}">{{$zones->shortDesc}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
                             <div class="col">
                                 <div class="">
                                     <label for="staticEmail" class=""><b>Region</b></label>
@@ -52,57 +41,39 @@
                             </div>
                             <div class="col">
                                 <div class="">
-                                    <label for="staticEmail" class=""><b>Distributor</b></label>
-                                    <select class="Set" aria-label="Default select example" name="distributor">
-                                        <option selected>Select</option>
-                                        @foreach($user as $users)
-                                        <option value="{{$users->id}}">{{$users->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="SearchSetupTwo ">
-                    <div class="cardForSearch">
-                        <div class="row">
-                            <div class="col">
-                                <div class="">
-                                    <label for="staticEmail" class=""><b>Date</b></label>
-                                    <label for="staticEmail" class="" name="dateTime" value="{{$dateTime}}">{{$dateTime}}</label>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="">
-                                    <label for="staticEmail" class=""><b>PO No</b></label>
-                                    <label for="staticEmail" class="">Automatically</label>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="">
-                                    <label for="staticEmail" class=""><b>Remark</b></label>
+                                    <label for="staticEmail" class=""><b>PO NO</b></label>
                                     <input type="text" class="Set" name="remark" name="remark"> 
                                 </div>
                             </div>
+                            <div class="col">
+                                <div class="">
+                                    <label for="staticEmail" class=""><b>FROM</b></label>
+                                    <input type="date" class="Set P-1" name="remark" name="remark"> 
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="">
+                                    <label for="staticEmail" class=""><b>TO</b></label>
+                                    <input type="date" class="Set P-1" name="remark" name="remark"> 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="tableMain">
+                <div class="tableMain pt-5">
                     <div class="tableSetup">
                         <table>
                             <thead>
                                 <tr>
-                                    <th><div class="tableHead">SKU CODE</div></th>
-                                    <th><div class="tableHead">SKU NAME</div></th>
-                                    <th><div class="tableHead">UNIT PRICE</div></th>
-                                    <th><div class="tableHead">AVB QTY</div></th>
-                                    <th><div class="tableHead">ENTER QTY</div></th>
-                                    <th><div class="tableHead">UNITS</div></th>
-                                    <th><div class="tableHead">TOTAL PRICE</div></th>
+                                    <th><div class="tableHeadPov">REGION</div></th>
+                                    <th><div class="tableHeadPov">TERRITORY</div></th>
+                                    <th><div class="tableHeadPov">DISTRIBUTOR</div></th>
+                                    <th><div class="tableHeadPov">PO NUMBER</div></th>
+                                    <th><div class="tableHeadPov">DATE</div></th>
+                                    <th><div class="tableHeadPov">TIME</div></th>
+                                    <th><div class="tableHeadPov">TOTAL AMOUNT</div></th>
+                                    <th><div class="tableHeadPov">VIEW PO</div></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,9 +83,10 @@
                                     <td name="skuName"><div class="tableBody"><input type="text"  class="tableText" value="{{$products->skuName}}" readonly></div></div></td>
                                     <td name="unitPrice"><div class="tableBody"><input type="text"  class="tableText" value="{{$products->mrp}}" readonly></div></div></td>
                                     <td name="qty"><div class="tableBody"><input type="text"  class="tableText" value="{{$products->skuCode}}" readonly></div></div></td>
-                                    <td name="customQty"><div class="tableBody"><input type="text"  class="tableText" value="" placeholder="Enter"></div></div></td>
+                                    <td name="qty"><div class="tableBody"><input type="text"  class="tableText" value="{{$products->skuCode}}" readonly></div></div></td>
                                     <td name="units"><div class="tableBody"><input type="text"  class="tableText" value="{{$products->unit}}" readonly></div></div></td>
-                                    <td name="totalPrice"><div class="tableBody">TOTAL PRICE</div></td>
+                                    <td name="units"><div class="tableBody"><input type="text"  class="tableText" value="{{$products->unit}}" readonly></div></div></td>
+                                    <td name="units"><div class="tableBody"><input type="text"  class="tableText" value="{{$products->unit}}" readonly></div></div></td>
                                 </tr>
                                 @endforeach
                             </tbody>

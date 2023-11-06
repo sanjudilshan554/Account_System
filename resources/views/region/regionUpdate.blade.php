@@ -15,19 +15,19 @@
         <div class="">
             
                 <div class="AddRegion">
-                        <h4><b>ADD REGION</b></h4>
+                        <h4><b>UPDATE REGION</b></h4>
                  </div>
             <div class="Segment">
                 <div class="card border-0">
-                    <form action="postRegion" method="POST">
+                    <form action="" method="post">
                     @csrf
                         <div class="fomr-group row">
                             <label for="" class="col-sm-5 col-form-label labelText">Zone</label>
                             <div class="col-sm-3">
                                 <select name="zoneId" id="" class="form-select">
-                                    <option selected>Select</option>
+                                    <option selected value="{{$region[0]['zoneId']}}">{{$region[0]['zoneId']}}</option>
                                     @foreach ($data as $dataSet)
-                                    <option value="{{$dataSet->id}}">{{$dataSet->shortDesc}}</option>
+                                    <option value="{{$dataSet->id}}">{{$dataSet->id}}</option>
                                   
                                     @endforeach
                                 </select>
@@ -36,20 +36,19 @@
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-5 col-form-label labelText">Region Code</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" placeholder="Automatically" name="regCode">
+                                <input type="text" class="form-control" placeholder="Automatically" name="regCode" value="{{$region[0]['id']}}" readonly>
                             </div>
                         </div>  
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-5 col-form-label labelText">Region Name</label>
                             <div class="col-sm-3">
-                                <input type="text" class="form-control" placeholder="Ex. REGION 1" name="regName">
+                                <input type="text" class="form-control" placeholder="Ex. REGION 1" name="regName" value="{{$region[0]['regName']}}">
                             </div>
                         </div>  
                         <div class="fomr-group row pt-4">
                             <label for="" class="col-sm-5 col-form-label labelText"></label>
                             <div class="col-sm-7">
-                                <input type="submit" class="submiClass" value="SAVE">
-                                <a href="{{route('regionView')}}" class="submiClass view">VIEW</a>
+                                <input type="submit" class="submiClass view" value="UPDATE">
                             </div>
                         </div>
                     </form>

@@ -42,6 +42,17 @@
     font-size: small;
 }
 
+.view{
+    background-color: rgb(9, 144, 185);
+    border-radius: 3px;
+    border: none;
+    padding: 3px 20px;
+    color: white;
+    font-weight: 400;
+    font-size: small;
+    text-decoration: none;
+}
+
 
 .AddRegion{
     text-align: center;
@@ -85,3 +96,145 @@
     display: flex;
     justify-content: center;
 }
+
+.tableHead{
+    background-color: rgba(0, 0, 0, 0.089);
+    color:black;
+    padding: 5px 15px;
+    font-weight: lighter;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.233);
+    margin: 3px;
+}
+
+.tableBody{
+    background-color: white;
+    color:black;
+    padding: 5px 15px;
+    font-weight: lighter;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.178);
+    margin: 3px;
+}
+
+.update{
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.tableText{
+    width: 75px;
+    border: none;
+}
+
+.tableText:focus{
+    width: 75px;
+    border: none;
+}
+
+.terText{
+    width: 120px;
+}
+
+.terText:focus{
+    width: 120px;
+}
+
+
+.tableMain{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 25px;
+}
+
+
+.SearchSetupOneForPOV{
+    padding-top: 8vh;
+    display: flex;
+    justify-content: center;
+}
+
+.cardForSearchForPOV{
+    width: 250vh;
+    text-align: center;
+    padding-left: 20vh;
+    padding-right: 20vh;
+}
+
+.tableHeadPov{
+    color:rgb(255, 255, 255);
+    padding: 5px 15px;
+    font-weight: lighter;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.233);
+    margin: 3px;
+    background-color: #4da333;
+    border-radius: 2px;
+}
+
+.cardSetup{
+    max-width: 400px;
+    padding: 40px 20px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.541);
+}
+
+.bodySetup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginButton{
+    text-align: right;
+}
+
+.loginText{
+    padding-top: 10vh;
+    text-align: center;
+    padding-bottom: 2vh;
+}
+
+.dontAcc{
+    padding-top: 3vh;
+    text-align: center;
+}
+.cardSetups{
+    display: flex;
+    flex-direction: row;
+}
+
+.sams{
+    text-align: center;
+}
+
+.setups{
+    padding-top: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.links{
+    background-color: rgb(95, 173, 16);
+    color:white;
+    padding: 3vh 5vh;
+    margin: 5vh;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.637);
+    text-decoration: none;
+    font-weight: bolder;
+}
+.links:hover{
+    background-color: rgb(102, 189, 15);
+    color:white;
+    padding: 3vh 5vh;
+    margin: 5vh;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.856);
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.mainText{
+    padding-top: 5vh;
+    text-align: center;
+}
+

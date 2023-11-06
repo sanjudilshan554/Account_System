@@ -17,54 +17,53 @@
                 <div class="col-sm-5"></div>
                 <div class="col-sm-7">
                     <div class="HeadText">
-                        <h4><b>ADD TERRITORY</b></h4>
+                        <h4><b>UPDATE TERRITORY</b></h4>
                     </div>
                 </div>
             </div>
            
             <div class="Segment">
                 <div class="card  border-0">
-                    <form action="postTerritory" method="POST">
+                    <form action="" method="POST">
                         @csrf
                         <div class="form-group row">
-                            <label for="" class="col-sm-5 col-form-label labelText">Zone</label>
+                            <label for="" class="col-sm-5 col-form-label labelText">Zone ID</label>
                             <div class="col-sm-3">
                                 <select name="zoneId" id="" class="form-select">
-                                    <option selected>Select</option>
                                     @foreach($data as $zones)
-                                    <option value="{{$zones->id}}">{{$zones->longDesc}}</option>
+                                    <option selected value="{{$terrData[0]['zoneId']}}">{{$terrData[0]['zoneId']}}</option>
+                                    <option value="{{$zones->id}}">{{$zones->id}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div> 
                         <div class="form-group row pt-2">
-                            <label for="" class="col-sm-5 col-form-label labelText">Region</label>
+                            <label for="" class="col-sm-5 col-form-label labelText">Region ID</label>
                             <div class="col-sm-3">
                                 <select name="regId" id="" class="form-select">
+                                <option selected>{{$terrData[0]['regId']}}</option>
                                 @foreach($regData as $regions)
-                                <option selected>Select</option>
-                                <option value="{{$regions->id}}">{{$regions->regName}}</option>
+                                <option value="{{$regions->id}}">{{$regions->id}}</option>
                                 @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="fomr-group row pt-2">
-                            <label for="" class="col-sm-5 col-form-label labelText">Territory Code</label>
+                            <label for="" class="col-sm-5 col-form-label labelText">Territory ID</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" placeholder="Automatically">
+                                <input type="text" class="form-control" value="{{$terrData[0]['id']}}" name="id" readonly >
                             </div>
                         </div> 
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-5 col-form-label labelText">Territory Name</label>
                             <div class="col-sm-3">
-                                <input type="text" name="terrName" class="form-control" placeholder="Ex. TERRITORY 1">
+                                <input type="text" name="terrName" class="form-control "  value="{{$terrData[0]['terrName']}}">
                             </div>
                         </div>   
                         <div class="form-group row pt-4">
                             <label for="" class="col-sm-5 col-form-label labelText"></label>
                             <div class="col-sm-7">
-                                <input type="submit" class="submiClass" value="SAVE">
-                                <a href="{{route('terrView')}}" class="submiClass view">VIEW</a>
+                                <input type="submit" class="submiClass view" value="UPDATE">
                             </div>
                         </div>
                     </form>

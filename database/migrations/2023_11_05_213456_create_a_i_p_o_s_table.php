@@ -11,8 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
+      
+
         Schema::create('a_i_p_o_s', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('zoneId');
+            $table->unsignedBigInteger('regId');
+            $table->unsignedBigInteger('terId');
+            $table->unsignedBigInteger('distributor');
+            $table->dateTime('dateTime');
+            $table->string('remark');
+            $table->unsignedBigInteger('skuCode');
+            $table->string('skuName');
+            $table->double('unitPrice');
+            $table->integer('qty');
+            $table->integer('customQty');
+            $table->string('units');
+            $table->double('totalPrice');
             $table->timestamps();
         });
     }
