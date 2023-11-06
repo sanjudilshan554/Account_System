@@ -78,7 +78,7 @@
                             <div class="col">
                                 <div class="">
                                     <label for="staticEmail" class=""><b>PO No</b></label>
-                                    <label for="staticEmail" class="">Automatically</label>
+                                    <label for="staticEmail" class="" >Automatically</label>
                                 </div>
                             </div>
                             <div class="col">
@@ -111,8 +111,14 @@
                                     <td name="skuCode"><div class="tableBody" ><input type="text"  class="tableText" value="{{$products->skuCode}}" readonly></div></td>
                                     <td name="skuName"><div class="tableBody"><input type="text"  class="tableText" value="{{$products->skuName}}" readonly></div></div></td>
                                     <td name="unitPrice"><div class="tableBody"><input type="text"  class="tableText" value="{{$products->mrp}}" readonly></div></div></td>
-                                    <td name="qty"><div class="tableBody"><input type="text"  class="tableText" value="{{$products->skuCode}}" readonly></div></div></td>
-                                    <td name="customQty"><div class="tableBody"><input type="text"  class="tableText" value="" placeholder="Enter"></div></div></td>
+                                    <td name="qty"><div class="tableBody"><input type="text"  class="tableText" value="{{$productReg->where('skuCode', $products->skuCode)->count()}}" readonly></div></div></td>
+
+                                    <td name="customQty">
+                                        <div class="tableBody">
+                                        <input type="text"  class="tableText" value="" placeholder="Type" name="enterQty[]">
+                                        </div>
+                                    </td>
+
                                     <td name="units"><div class="tableBody"><input type="text"  class="tableText" value="{{$products->unit}}" readonly></div></div></td>
                                     <td name="totalPrice"><div class="tableBody">TOTAL PRICE</div></td>
                                 </tr>
@@ -120,6 +126,7 @@
                             </tbody>
                         </table>
                         <div class="pt-5 btnBackPOV">
+                            <input type="submit" class="addPo" value="ADD PO">
                             <a href="{{route('homeBackViewUser')}}" class="submiClass view secondary">BACK</a>
                         </div>
                     </div>
@@ -128,4 +135,7 @@
         </div>
     </section>
 </body>
+
+
+
 </html>

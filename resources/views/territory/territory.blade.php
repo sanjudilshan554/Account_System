@@ -7,6 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
+
+@if(session('message'))
+    <script>
+        alert("{{ session('message') }}");
+    </script>
+@endif
+
     <section>
         <div class="WelcomeText">
             <label><b>Welcome System Admin</b></label><br>
@@ -29,7 +36,7 @@
                         <div class="form-group row">
                             <label for="" class="col-sm-5 col-form-label labelText">Zone</label>
                             <div class="col-sm-3">
-                                <select name="zoneId" id="" class="form-select">
+                                <select name="zoneId" id="" class="form-select" required>
                                     <option selected>Select</option>
                                     @foreach($data as $zones)
                                     <option value="{{$zones->id}}">{{$zones->longDesc}}</option>
@@ -40,9 +47,9 @@
                         <div class="form-group row pt-2">
                             <label for="" class="col-sm-5 col-form-label labelText">Region</label>
                             <div class="col-sm-3">
-                                <select name="regId" id="" class="form-select">
-                                @foreach($regData as $regions)
+                                <select name="regId" id="" class="form-select" required>
                                 <option selected>Select</option>
+                                @foreach($regData as $regions)
                                 <option value="{{$regions->id}}">{{$regions->regName}}</option>
                                 @endforeach
                                 </select>
@@ -51,13 +58,13 @@
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-5 col-form-label labelText">Territory Code</label>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" placeholder="Automatically">
+                                <input type="text" class="form-control" placeholder="{{$autoId}}" readonly>
                             </div>
                         </div> 
                         <div class="fomr-group row pt-2">
                             <label for="" class="col-sm-5 col-form-label labelText">Territory Name</label>
                             <div class="col-sm-3">
-                                <input type="text" name="terrName" class="form-control" placeholder="Ex. TERRITORY 1">
+                                <input type="text" name="terrName" class="form-control" placeholder="Ex. TERRITORY 1" required>
                             </div>
                         </div>   
                         <div class="form-group row pt-4">
@@ -75,3 +82,4 @@
     </section>
 </body>
 </html>
+

@@ -22,41 +22,46 @@ use App\http\Controllers\AIPOController;
 //     return view('welcome');
 // });
 
+// LOGIN ROUTING(MAIN)
 Route::view('/', 'login.login')->name('login');
 
-// Route::view('/addZone', 'zone.zone')->name('Zone');
+// ZONE PART
 Route::get('/addZone',[ZoneController::class,'getZone'])->name('Zone');
 Route::post('/postZone',[ZoneController::class,'store']);
 Route::get('/zoneView',[ZoneController::class,'zoneView'])->name('zoneView');
 Route::get('/zoneUpdateView/{id}',[ZoneController::class,'zoneUpdateView'])->name('zoneUpdateView');
 Route::post('/zoneUpdateView/{id}',[ZoneController::class,'zoneUpdate'])->name('zoneUpdate');
 
-
+// REGION PART
 Route::get('/addRegion',[RegionController::class,'getRegion'])->name('Region');
 Route::post('/postRegion',[RegionController::class,'store']);
 Route::get('/regionView',[RegionController::class,'regionView'])->name('regionView');
 Route::get('/updateReigonView/{id}',[RegionController::class,'updateReigonView'])->name('updateReigonView');
 Route::post('/updateReigonView/{id}',[RegionController::class,'updateRegion'])->name('updateRegion');
 
-
+// TERRITORY PART
 Route::get('/addTerritory',[TerritoryController::class,'getTerritory'])->name('Territory');
 Route::post('/postTerritory',[TerritoryController::class,'store']);
 Route::get('/terrView',[TerritoryController::class,'terrView'])->name('terrView');
 Route::get('/updateTerrView/{id}',[TerritoryController::class,'updateTerrView'])->name('updateTerrView');
 Route::post('/updateTerrView/{id}',[TerritoryController::class,'updateTerr'])->name('updateTerr');
 
+// GET USER LOGIN PAGES
 Route::get('/getUser',[UserRegsController::class,'getUser'])->name('userRegistration');
 Route::post('/postUser',[UserRegsController::class,'store']);
 Route::post('/postLogin',[UserRegsController::class,'login'])->name('userLogin');
 
-Route::view('/addSku', 'sku.sku')->name('ProductRegistration');
+// PRODUCT REGISTRATION
+Route::get('/addSku',[ProductRegController::class,'getSku'])->name('ProductRegistration');
 Route::post('/postSku',[ProductRegController::class,'store']);
 
+// ADD INDIVIDUAL PURCHASE ORDER
 Route::get('/getAIPO',[AIPOController::class,'getAIPO'])->name('AIPO');
 Route::post('/postAIPO',[AIPOController::class,'store']);
 
+// GET PURCHASE ORDER VIEW 
 Route::get('/getPOV',[AIPOController::class,'getPOV'])->name('POV');
 
-// routing back
+// ROUTING BACK TO HOME
 Route::get('/homeBack',[UserRegsController::class,'redirectHome'])->name('homeBackView');
 Route::get('/homeBackUser',[UserRegsController::class,'redirectHomeUser'])->name('homeBackViewUser');

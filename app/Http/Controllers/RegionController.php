@@ -13,20 +13,24 @@ class RegionController extends Controller
 
         // Getting zone data and return view
         function getRegion(){
+
+            $guessId=region::count();
+            $AutomaticId=$guessId+1;
+
             $data=zone::get();
 
             $currentDateTime = Carbon::now('Asia/Colombo');
             $dateTime = $currentDateTime->format('l, jS F Y g:i A');
 
-            return view('region.region',['data'=>$data,'dateTime'=>$dateTime]);
+            return view('region.region',['data'=>$data,'dateTime'=>$dateTime,'autoId'=>$AutomaticId]);
         }
 
 
         function store(Request $request){
    
         $validation=$request->validate([
-            'zoneId'=>[''],
-            'regName'=>['']
+            'zoneId'=>['required'],
+            'regName'=>['required']
         ]);
 
         $data=region::create([
@@ -34,7 +38,10 @@ class RegionController extends Controller
             'regName'=>$validation['regName'],
         ]);
 
-        return redirect()->route('Region',['message'=>'data successfully saved','status'=>'200','data'=>$data]);
+        if($data){
+            return redirect()->route('Region')->with('message', 'Region added successfully');
+        }
+
     }
 
     function regionView(){
@@ -64,7 +71,9 @@ class RegionController extends Controller
                 'regName'=>$regName,
             ]);
         
-        return redirect()->route('regionView',['message'=>'update successfully']);
+        if($affected){
+            return redirect()->route('regionView')->with('message', 'Region update successfully');
+        }
     }
     
 }

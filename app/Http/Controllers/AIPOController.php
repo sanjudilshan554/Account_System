@@ -9,24 +9,33 @@ use App\models\territory;
 use App\models\userRegs;
 use App\models\AIPO;
 use App\models\productReg;
+use Carbon\Carbon;
 
 class AIPOController extends Controller
 {
     function getAIPO(){
+
+        // $guessId=AIPO::count();
+        // $AutomaticId=$guessId+1;
+
+
         $zoneData=zone::get();
         $regionData=region::get();
         $territoryData=territory::get();
         $userData=userRegs::get();
-        $dateTime=now();
+        $dateTime=Carbon::now('Asia/Colombo');
+
         $productData=productReg::get();
 
+     
         return view('AIPO.AIPO',[
             'zone'=>$zoneData,
             'region'=>$regionData,
             'territory'=>$territoryData,
             'user'=>$userData,
             'dateTime'=>$dateTime,
-            'productReg'=>$productData
+            'productReg'=>$productData,
+            // 'autoId'=>$AutomaticId
         ]);
     }
 
@@ -72,7 +81,7 @@ class AIPOController extends Controller
         $regionData=region::get();
         $territoryData=territory::get();
         $userData=userRegs::get();
-        $dateTime=now();
+        $dateTime=Carbon::now();
         $productData=productReg::get();
 
         return view('POV.POV',[

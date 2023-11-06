@@ -10,18 +10,21 @@ use Carbon\Carbon;
 class ZoneController extends Controller
 {
     function getZone(){
-        // $dateTime=now();
+
+        $guessId=zone::count();
+        $AutomaticId=$guessId+1;
+
         $currentDateTime = Carbon::now('Asia/Colombo');
         $dateTime = $currentDateTime->format('l, jS F Y g:i A');
         
-        return view('zone.zone',['dateTime'=>$dateTime]);
+        return view('zone.zone',['dateTime'=>$dateTime,'autoId'=>$AutomaticId]);
     }
 
     function store(Request $request){
         
         $validation=$request->validate([
-            'longDescription'=>[''],
-            'shortDescription'=>[''],
+            'longDescription'=>['required'],
+            'shortDescription'=>['required'],
         ]);
 
         $data=zone::create([
@@ -29,7 +32,10 @@ class ZoneController extends Controller
             'shortDesc'=>$request->shortDescription,
         ]);
 
-        return redirect()->route('Zone',['message'=>'data successfully saved']);
+        if($data){
+            return redirect()->route('Zone')->with('message', 'Zone added successfully');
+        }
+       
     }
 
     function zoneView(){
@@ -57,7 +63,9 @@ class ZoneController extends Controller
                 'shortDesc'=>$shortDesc,
             ]);
         
-        return redirect()->route('zoneView',['message'=>'update successfully']);
+        if($affected){
+            return redirect()->route('zoneView')->with('message', 'Zone update successfully');
+        }
     }
 
     

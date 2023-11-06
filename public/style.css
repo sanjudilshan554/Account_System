@@ -70,7 +70,7 @@
     border-radius: 3px;
     border: 1px solid black;
     border: none;
-    height: 5vh;
+    height: 35px;
     color: rgba(0, 0, 0, 0.644);
 }
 
@@ -244,6 +244,7 @@
 
 .btnBackPOV{
     text-align: right;
+    margin-bottom: 2vh;
 }
 
 .exitBtn{
@@ -252,4 +253,15 @@
 .exit{
     background-color: red;
     margin-right: 10vh;
+}
+
+.addPo{
+    background-color: rgba(78,165,50,255);
+    border-radius: 3px;
+    border: none;
+    padding: 3px 20px;
+    color: white;
+    font-weight: 400;
+    font-size: small;
+    width: 150px;
 }

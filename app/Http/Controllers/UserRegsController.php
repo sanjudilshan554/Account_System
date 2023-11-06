@@ -43,7 +43,9 @@ class UserRegsController extends Controller
             'password'=>$validate_data['password'],
         ]);
 
-        return redirect()->route('userRegistration');
+        if($data){
+            return redirect()->route('userRegistration')->with('message', 'Registration successfully');
+        }
     }
 
     function login(Request $request){
