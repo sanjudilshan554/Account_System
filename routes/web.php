@@ -24,14 +24,15 @@ use App\http\Controllers\AIPOController;
 
 Route::view('/', 'login.login')->name('login');
 
-Route::view('/addZone', 'zone.zone')->name('Zone');
+// Route::view('/addZone', 'zone.zone')->name('Zone');
+Route::get('/addZone',[ZoneController::class,'getZone'])->name('Zone');
 Route::post('/postZone',[ZoneController::class,'store']);
 Route::get('/zoneView',[ZoneController::class,'zoneView'])->name('zoneView');
 Route::get('/zoneUpdateView/{id}',[ZoneController::class,'zoneUpdateView'])->name('zoneUpdateView');
 Route::post('/zoneUpdateView/{id}',[ZoneController::class,'zoneUpdate'])->name('zoneUpdate');
 
 
-Route::get('/addRegion',[RegionController::class,'getZone'])->name('Region');
+Route::get('/addRegion',[RegionController::class,'getRegion'])->name('Region');
 Route::post('/postRegion',[RegionController::class,'store']);
 Route::get('/regionView',[RegionController::class,'regionView'])->name('regionView');
 Route::get('/updateReigonView/{id}',[RegionController::class,'updateReigonView'])->name('updateReigonView');
@@ -55,3 +56,7 @@ Route::get('/getAIPO',[AIPOController::class,'getAIPO'])->name('AIPO');
 Route::post('/postAIPO',[AIPOController::class,'store']);
 
 Route::get('/getPOV',[AIPOController::class,'getPOV'])->name('POV');
+
+// routing back
+Route::get('/homeBack',[UserRegsController::class,'redirectHome'])->name('homeBackView');
+Route::get('/homeBackUser',[UserRegsController::class,'redirectHomeUser'])->name('homeBackViewUser');

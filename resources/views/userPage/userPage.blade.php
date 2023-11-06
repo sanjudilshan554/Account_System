@@ -7,7 +7,10 @@
     <title>SysAdmin</title>
 </head>
 <body>
-    <h4 class="display-2 mainText">USER'S HOME</h4>
+    <div class="pt-4 exitBtn">
+            <a href="{{route('login')}}" class="submiClass view exit">EXIT</a>
+    </div>
+    <h4 class="display-2 mainText">{{session('userName')}}'s HOME</h4>
     <div class="setups">
         <div class="sams">
             <a href="{{route('ProductRegistration')}}" class="links pt-">PRODUCT REGISTRATION</a>

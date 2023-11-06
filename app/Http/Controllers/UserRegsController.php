@@ -48,6 +48,8 @@ class UserRegsController extends Controller
 
     function login(Request $request){
 
+        session_start();
+
         $un=$request->username;
         $pw=$request->password;
 
@@ -56,10 +58,12 @@ class UserRegsController extends Controller
         ->first();
 
         if($un == 'admin' && $pw == 'admin'){
+            session(['role'=>'admin']);
             return view('adminPage.adminPage',['message'=>'verified admin login']);
         }
         elseif($user){
             if($user->userName == $un && $user->password == $pw){
+                session(['userName' => $un,'role'=>'user']);
                 return view('userPage.userPage',['message'=>'verified admin login']);
             }else{
                 return redirect()->route('login',['message'=>'invalid username or password']);
@@ -69,4 +73,14 @@ class UserRegsController extends Controller
             return redirect()->route('login',['message'=>'Try again later']);
         }   
     }
+
+    function redirectHome(){
+        return view('adminPage.adminPage');
+    }
+
+    function redirectHomeUser(){
+        return view('userPage.userPage');
+    }
+
+    
 }

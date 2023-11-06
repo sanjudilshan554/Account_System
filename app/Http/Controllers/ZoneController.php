@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models\zone;
 use DB;
+use Carbon\Carbon;
 
 class ZoneController extends Controller
 {
+    function getZone(){
+        // $dateTime=now();
+        $currentDateTime = Carbon::now('Asia/Colombo');
+        $dateTime = $currentDateTime->format('l, jS F Y g:i A');
+        
+        return view('zone.zone',['dateTime'=>$dateTime]);
+    }
+
     function store(Request $request){
         
         $validation=$request->validate([
@@ -50,4 +59,6 @@ class ZoneController extends Controller
         
         return redirect()->route('zoneView',['message'=>'update successfully']);
     }
+
+    
 }

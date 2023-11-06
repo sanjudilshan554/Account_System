@@ -72,6 +72,7 @@
                             <label for="" class="col-sm-4 col-form-label labelText"></label>
                             <div class="col-sm-7">
                                 <input type="submit" class="submiClass" value="SAVE">
+                                <a href="{{route('homeBackViewUser')}}" class="submiClass view secondary">BACK</a>
                             </div>
                         </div>
                         

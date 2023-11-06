@@ -10,7 +10,7 @@
     <section>
         <div class="WelcomeText">
             <label><b>Welcome System Admin</b></label><br>
-            <label>date and time</label>
+            <label>{{$dateTime}}</label>
         </div>
         <div class="">
             
@@ -50,6 +50,7 @@
                             <div class="col-sm-7">
                                 <input type="submit" class="submiClass" value="SAVE">
                                 <a href="{{route('regionView')}}" class="submiClass view">VIEW</a>
+                                <a href="{{route('homeBackView')}}" class="submiClass view secondary">BACK</a>
                             </div>
                         </div>
                     </form>

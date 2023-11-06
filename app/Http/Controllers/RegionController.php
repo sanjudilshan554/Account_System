@@ -6,14 +6,19 @@ use Illuminate\Http\Request;
 use App\models\zone;
 use App\models\region;
 use DB;
+use Carbon\Carbon;
+
 class RegionController extends Controller
 {
 
         // Getting zone data and return view
-        function getZone(){
+        function getRegion(){
             $data=zone::get();
 
-            return view('region.region',['data'=>$data]);
+            $currentDateTime = Carbon::now('Asia/Colombo');
+            $dateTime = $currentDateTime->format('l, jS F Y g:i A');
+
+            return view('region.region',['data'=>$data,'dateTime'=>$dateTime]);
         }
 
 

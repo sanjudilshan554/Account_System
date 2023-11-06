@@ -91,10 +91,24 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                      
+                      @if(session('role') == 'admin')
+                        <div class="pt-5 btnBackPOV">
+                            <a href="{{route('homeBackView')}}" class="submiClass view secondary">BACK</a>
+                        </div>
+                     @else
+                        <div class="pt-5 btnBackPOV">
+                            <a href="{{route('homeBackViewUser')}}" class="submiClass view secondary">BACK</a>
+                        </div>
+                    @endif
                     </div>
                 </div>
             </form>
         </div>
+
+        
+        
     </section>
 </body>
 </html>

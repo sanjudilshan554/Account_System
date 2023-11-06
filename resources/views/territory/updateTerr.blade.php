@@ -64,6 +64,7 @@
                             <label for="" class="col-sm-5 col-form-label labelText"></label>
                             <div class="col-sm-7">
                                 <input type="submit" class="submiClass view" value="UPDATE">
+                                <a href="{{route('terrView')}}" class="submiClass view secondary">BACK</a>
                             </div>
                         </div>
                     </form>

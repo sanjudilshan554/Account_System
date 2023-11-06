@@ -7,7 +7,12 @@
     <title>SysAdmin</title>
 </head>
 <body>
+    <div class="pt-4 exitBtn">
+            <a href="{{route('login')}}" class="submiClass view exit">EXIT</a>
+    </div>
+
     <h4 class="display-2 mainText">SYSTEM ADMIN</h4>
+
     <div class="setups">
         <div class="sams">
             <a href="{{route('Zone')}}" class="links pt-">ADD ZONE</a>

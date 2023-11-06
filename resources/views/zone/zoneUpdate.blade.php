@@ -48,6 +48,7 @@
                             <label for="" class="col-sm-6 col-form-label labelText"></label>
                             <div class="col-sm-6">
                                 <input type="submit" class="submiClass view" value="UPDATE">
+                                <a href="{{route('zoneView')}}" class="submiClass view secondary">BACK</a>
                             </div>
                         </div>
                     </form>

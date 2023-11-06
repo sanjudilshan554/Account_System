@@ -13,7 +13,7 @@
     align-items: right;
     text-align: right;
     padding-right: 30px;
-    font-size: xx-small;
+    font-size: small;
     padding-bottom: 10vh;
 }
 
@@ -238,3 +238,18 @@
     text-align: center;
 }
 
+.secondary{
+    background-color: gray;
+}
+
+.btnBackPOV{
+    text-align: right;
+}
+
+.exitBtn{
+    text-align: right;
+}
+.exit{
+    background-color: red;
+    margin-right: 10vh;
+}

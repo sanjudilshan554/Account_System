@@ -7,7 +7,7 @@ use App\models\zone;
 use App\models\region;
 use App\models\territory;
 use DB;
-
+use Carbon\Carbon;
 
 class TerritoryController extends Controller
 {
@@ -15,7 +15,10 @@ class TerritoryController extends Controller
         $regionData=region::get();
         $zoneData=zone::get();
 
-        return view('territory.territory',['regData'=>$regionData,'data'=>$zoneData]);
+        $currentDateTime = Carbon::now('Asia/Colombo');
+        $dateTime = $currentDateTime->format('l, jS F Y g:i A');
+
+        return view('territory.territory',['regData'=>$regionData,'data'=>$zoneData,'dateTime'=>$dateTime]);
     }
 
     function store(Request $request){

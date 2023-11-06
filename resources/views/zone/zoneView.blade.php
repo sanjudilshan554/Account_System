@@ -30,6 +30,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="pt-5 btnBackPOV">
+                            <a href="{{route('Zone')}}" class="submiClass view secondary">BACK</a>
+                        </div>
                     </div>
                 </div>
     </section>
