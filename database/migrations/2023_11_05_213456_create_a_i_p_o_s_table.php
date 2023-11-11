@@ -21,13 +21,17 @@ return new class extends Migration
             $table->unsignedBigInteger('distributor');
             $table->dateTime('dateTime');
             $table->string('remark');
-            $table->unsignedBigInteger('skuCode');
+            $table->string('skuCode');
             $table->string('skuName');
             $table->double('unitPrice');
             $table->integer('qty');
             $table->integer('customQty');
             $table->string('units');
             $table->double('totalPrice');
+            $table->foreign('zoneId')->references('id')->on('zones');
+            $table->foreign('regId')->references('id')->on('regions');
+            $table->foreign('terId')->references('id')->on('territories');
+            $table->foreign('distributor')->references('id')->on('user_regs');
             $table->timestamps();
         });
     }

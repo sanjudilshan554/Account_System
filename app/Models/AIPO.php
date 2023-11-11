@@ -24,4 +24,24 @@ class AIPO extends Model
         'units',
         'totalPrice',
     ];
+
+    public function zone()
+    {
+        return $this->belongsTo(zone::class, 'zoneId');
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(region::class, 'regId');
+    }
+
+    public function territory()
+    {
+        return $this->belongsTo(territory::class, 'terId');
+    }
+
+    public function distributor()
+    {
+        return $this->belongsTo(userRegs::class, 'distributor');
+    }
 }

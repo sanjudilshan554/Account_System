@@ -12,21 +12,35 @@ use Carbon\Carbon;
 class TerritoryController extends Controller
 {
     function getTerritory(){
+
+        $guessId=territory::count();
+        $AutomaticId=$guessId+1;
+
         $regionData=region::get();
         $zoneData=zone::get();
 
         $currentDateTime = Carbon::now('Asia/Colombo');
         $dateTime = $currentDateTime->format('l, jS F Y g:i A');
 
-        return view('territory.territory',['regData'=>$regionData,'data'=>$zoneData,'dateTime'=>$dateTime]);
+
+
+
+        return view('territory.territory',['regData'=>$regionData,'data'=>$zoneData,'dateTime'=>$dateTime,'autoId'=>$AutomaticId]);
     }
 
+    function getRegions($id){
+        $data=region::select('regName','id')
+        ->where('zoneId',$id)
+        ->get();
+
+        return response()->json(['data'=>$data]);
+    }
     function store(Request $request){
    
         $validate_data=$request->validate([
-            'zoneId'=>[''],
-            'regId'=>[''],
-            'terrName'=>[''],
+            'zoneId'=>['required'],
+            'regId'=>['required'],
+            'terrName'=>['required'],
         ]);
 
         $data=territory::create([
@@ -35,7 +49,10 @@ class TerritoryController extends Controller
             'terrName'=>$validate_data['terrName'],
         ]);
 
-        return redirect()->route('Territory');
+        if($data){
+            return redirect()->route('Territory')->with('message', 'Territory added successfully');
+        }
+    
     }
 
     
@@ -69,7 +86,11 @@ class TerritoryController extends Controller
                 'terrName'=>$terrName,
             ]);
         
-        return redirect()->route('terrView',['message'=>'update successfully']);
+
+        if($affected){
+            return redirect()->route('terrView')->with('message', 'Territory update successfully');
+        }
+
     }
 
 

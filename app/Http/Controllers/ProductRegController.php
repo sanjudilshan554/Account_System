@@ -8,6 +8,12 @@ use App\models\productReg;
 
 class ProductRegController extends Controller
 {
+    function getSku(){
+        
+        $guessId=productReg::count();
+        $AutomaticId=$guessId+1;
+        return view('sku.sku',['autoId'=>$AutomaticId]);
+    }
     function store(Request $request){
         
         $validate_data=$request->validate([
@@ -18,8 +24,7 @@ class ProductRegController extends Controller
             'weight'=>['required'],
             'unit'=>['required'],
         ]);
-        
-
+       
         $data=productReg::create([
             'skuCode'=>$validate_data['skuCode'],
             'skuName'=>$validate_data['skuName'],
@@ -29,6 +34,10 @@ class ProductRegController extends Controller
             'unit'=>$validate_data['unit'],
         ]);
 
-        return redirect()->route('ProductRegistration');
+        if($data){
+            return redirect()->route('ProductRegistration')->with('message', 'Product registration successfully');
+        }
+        
     }
+
 }

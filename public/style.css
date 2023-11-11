@@ -63,16 +63,27 @@
     width: 50vh;
 }
 .Set{
-    width: 110px;
+    width: 120px;
     align-items: left;
     justify-content: left;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.548);
     border-radius: 3px;
     border: 1px solid black;
     border: none;
-    height: 5vh;
+    height: 35px;
     color: rgba(0, 0, 0, 0.644);
 }
+.Sets{
+    width: 160px;
+    align-items: left;
+    justify-content: left;
+    border-radius: 3px;
+    border: 1px solid black;
+    border: none;
+    height: 35px;
+    color: rgba(0, 0, 0, 0.644);
+}
+
 
 .labelSet{
     text-align: right;
@@ -113,6 +124,17 @@
     font-weight: lighter;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.178);
     margin: 3px;
+}
+
+.tableBodyex{
+    background-color: white;
+    color:black;
+    padding: 5px 15px;
+    font-weight: lighter;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.178);
+    margin: 3px;
+    font-size:small;
+    text-align: center;
 }
 
 .update{
@@ -244,6 +266,7 @@
 
 .btnBackPOV{
     text-align: right;
+    margin-bottom: 2vh;
 }
 
 .exitBtn{
@@ -252,4 +275,19 @@
 .exit{
     background-color: red;
     margin-right: 10vh;
+}
+
+.addPo{
+    background-color: rgba(78,165,50,255);
+    border-radius: 3px;
+    border: none;
+    padding: 3px 20px;
+    color: white;
+    font-weight: 400;
+    font-size: small;
+    width: 150px;
+}
+
+.dc{
+    text-align: center;
 }
