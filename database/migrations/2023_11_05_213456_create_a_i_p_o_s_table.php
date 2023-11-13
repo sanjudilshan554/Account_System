@@ -21,13 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('distributor');
             $table->dateTime('dateTime');
             $table->string('remark');
-            $table->string('skuCode');
-            $table->string('skuName');
-            $table->double('unitPrice');
-            $table->integer('qty');
-            $table->integer('customQty');
-            $table->string('units');
-            $table->double('totalPrice');
+            $table->json('purchase_order_items'); // JSON column to store the items
+        
             $table->foreign('zoneId')->references('id')->on('zones');
             $table->foreign('regId')->references('id')->on('regions');
             $table->foreign('terId')->references('id')->on('territories');

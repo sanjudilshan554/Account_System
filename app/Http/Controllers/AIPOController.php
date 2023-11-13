@@ -39,52 +39,51 @@ class AIPOController extends Controller
         ]);
     }
 
-    function store(Request $request){
-
-      
-        $validate_data=$request->validate([
-            'zoneId'=>['required'],
-            'regId'=>['required'],
-            'terId'=>['required'],
-            'distributor'=>['required'],
-            'dateTime'=>['required'],
-            'remark'=>['required'],
-            'skuCode'=>['required'],
-            'skuName'=>['required'],
-            'unitPrice'=>['required'],
-            'qty'=>['required'],
-            'quantity'=>['required'],
-            'units'=>['required'],
-            'totalPrice'=>['required'],
+    function store(Request $request) {
+        $validatedData = $request->validate([
+            'zoneId' => ['required'],
+            'regId' => ['required'],
+            'terId' => ['required'],
+            'distributor' => ['required'],
+            'dateTime' => ['required'],
+            'remark' => ['required'],
+            'skuCode' => ['required'],
+            'skuName' => ['required'],
+            'unitPrice' => ['required'],
+            'qty' => ['required'],
+            'quantity' => ['required'],
+            'units' => ['required'],
+            'totalPrice' => ['required'],
         ]);
-
-        $aipoData=[];
-     
-        for ($i = 0; $i < count($validate_data['skuCode']); $i++) {
-            $aipoData[] = [
-                'zoneId' => $validate_data['zoneId'],
-                'regId' => $validate_data['regId'],
-                'terId' => $validate_data['terId'],
-                'distributor' => $validate_data['distributor'],
-                'dateTime' => $validate_data['dateTime'],
-                'remark' => $validate_data['remark'],
-                'skuCode' => $validate_data['skuCode'][$i],
-                'skuName' => $validate_data['skuName'][$i],
-                'unitPrice' => $validate_data['unitPrice'][$i],
-                'qty' => $validate_data['qty'][$i],
-                'customQty' => $validate_data['quantity'][$i],
-                'units' => $validate_data['units'][$i],
-                'totalPrice' => $validate_data['totalPrice'][$i],
-                'created_at' => now(),
-                'updated_at' => now(),
+    
+        $items = [];
+        foreach ($validatedData['skuCode'] as $key => $skuCode) {
+            $items[] = [
+                'skuCode' => $validatedData['skuCode'][$key],
+                'skuName' => $validatedData['skuName'][$key],
+                'unitPrice' => $validatedData['unitPrice'][$key],
+                'qty' => $validatedData['qty'][$key],
+                'quantity' => $validatedData['quantity'][$key],
+                'units' => $validatedData['units'][$key],
+                'totalPrice' => $validatedData['totalPrice'][$key]
             ];
         }
-
-       
-
-        $data=AIPO::insert($aipoData);
-
-        return redirect()->route('AIPO')->with(['message'=>'Purchase order added successfully']);
+    
+        $aipoData = [
+            'zoneId' => $validatedData['zoneId'],
+            'regId' => $validatedData['regId'],
+            'terId' => $validatedData['terId'],
+            'distributor' => $validatedData['distributor'],
+            'dateTime' => $validatedData['dateTime'],
+            'remark' => $validatedData['remark'],
+            'purchase_order_items' => $items,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+    
+        AIPO::create($aipoData);
+    
+        return redirect()->route('AIPO')->with(['message' => 'Purchase order added successfully']);
     }
 
     function getPOV(){
@@ -123,8 +122,32 @@ class AIPOController extends Controller
         return response()->json(['poNumbers' => $poNumbers]);
     }
 
+    // without po
     function getPovTable(Request $request){
         
+        $regionId = $request->input('regId');
+        $territoryId = $request->input('terrySelect');
+        $fromDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+
+        $aiposData = AIPO::with(['region', 'territory', 'distributor'])
+        ->where('zoneId', $regionId)
+        ->where('regId', $territoryId)
+        ->whereBetween('dateTime', [$fromDate, $toDate])
+        ->get();
+
+        $netTotal = 0;
+        foreach ($aiposData as $purchaseOrder) {
+            $purchaseItems = $purchaseOrder->purchase_order_items; // No decoding needed
+            foreach ($purchaseItems as $item) {
+                $netTotal += $item['totalPrice'];
+            }
+        }
+        return response()->json(['aiposData' => $aiposData, 'netTotal' => $netTotal]);
+    }
+
+    // with po
+    function PovTablewithpovNumber(Request $request){
         $regionId = $request->input('regId');
         $territoryId = $request->input('terrySelect');
         $poNumber = $request->input('poNo');
@@ -132,12 +155,21 @@ class AIPOController extends Controller
         $toDate = $request->input('toDate');
 
         $aiposData = AIPO::with(['region', 'territory', 'distributor'])
-            ->where('zoneId', $regionId)
-            ->where('regId', $territoryId)
-            ->where('id', $poNumber)
-            ->whereBetween('dateTime', [$fromDate, $toDate])
-            ->get();
-        
-        return response()->json(['aiposData' => $aiposData]);
+        ->where('zoneId', $regionId)
+        ->where('regId', $territoryId)
+        ->where('id', $poNumber)
+        ->whereBetween('dateTime', [$fromDate, $toDate])
+        ->get();
+
+        $netTotal = 0;
+        foreach ($aiposData as $purchaseOrder) {
+            $purchaseItems = $purchaseOrder->purchase_order_items; // No decoding needed
+            foreach ($purchaseItems as $item) {
+                $netTotal += $item['totalPrice'];
+            }
+        }
+        return response()->json(['aiposData' => $aiposData, 'netTotal' => $netTotal]);
     }
+
+
 }

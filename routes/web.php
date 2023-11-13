@@ -63,10 +63,11 @@ Route::get('/get-territories/{zid}/{rid}',[AIPOController::class,'getTerr']);
 Route::get('/get-territories/{id}',[AIPOController::class,'getTerrForPov']);
 Route::get('/fetchPONumbers',[AIPOController::class,'getPoNumber']);
 
+
 // GET PURCHASE ORDER VIEW 
 Route::get('/getPOV',[AIPOController::class,'getPOV'])->name('POV');
 Route::get('/fetchAiposData',[AIPOController::class,'getPovTable'])->name('PovTable');
-
+Route::get('/fetchAiposDataWithPo',[AIPOController::class,'PovTablewithpovNumber'])->name('PovTablewithpovNumber');
 
 // ROUTING BACK TO HOME
 Route::get('/homeBack',[UserRegsController::class,'redirectHome'])->name('homeBackView');

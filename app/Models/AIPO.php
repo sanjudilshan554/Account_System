@@ -9,22 +9,21 @@ class AIPO extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'zoneId',
         'regId',
         'terId',
         'distributor',
         'dateTime',
         'remark',
-        'skuCode',
-        'skuName',
-        'unitPrice',
-        'qty',
-        'customQty',
-        'units',
-        'totalPrice',
+        'purchase_order_items', // Add the new attribute for storing items as JSON
     ];
 
+    protected $casts = [
+        'purchase_order_items' => 'json', // Define the cast for the JSON field
+    ];
+
+    
     public function zone()
     {
         return $this->belongsTo(zone::class, 'zoneId');

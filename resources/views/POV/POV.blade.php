@@ -84,6 +84,7 @@
     const fromDate = document.getElementById('fromDate');
     const toDate = document.getElementById('toDate');
     const tableBody = document.getElementById('tableBody');
+    const selectAllCheckbox = document.getElementById('selectAllCheckbox');
 
     [regId, terrySelect, poNo, fromDate, toDate].forEach((element) => {
         element.addEventListener('change', updateTable);
@@ -96,7 +97,7 @@
         const selectedFromDate = fromDate.value;
         const selectedToDate = toDate.value;
 
-        fetch(`/fetchAiposData?regId=${selectedRegId}&terrySelect=${selectedTerryId}&poNo=${selectedPoNo}&fromDate=${selectedFromDate}&toDate=${selectedToDate}`)
+        fetch(`/fetchAiposDataWithPo?regId=${selectedRegId}&terrySelect=${selectedTerryId}&poNo=${selectedPoNo}&fromDate=${selectedFromDate}&toDate=${selectedToDate}`)
             .then(response => response.json())
             .then(data => {
                 tableBody.innerHTML = ''; 
@@ -138,9 +139,9 @@
                     timeCell.textContent = dateTimeParts[1];
                     timeCell.style.textAlign = 'center';
 
-                    const totalAmountCell = document.createElement('td');
-                    totalAmountCell.textContent = totalPrice;
-                    totalAmountCell.style.textAlign = 'center';
+                    const netTotalCell = document.createElement('td');
+                    netTotalCell.textContent = `${data.netTotal}`;
+                    netTotalCell.style.textAlign = 'center';
 
                     const viewCell = document.createElement('td');
                     const viewLink = document.createElement('a');
@@ -158,16 +159,123 @@
                     row.appendChild(poNoCell);
                     row.appendChild(dateCell);
                     row.appendChild(timeCell);
-                    row.appendChild(totalAmountCell);
+                    row.appendChild(netTotalCell);
                     row.appendChild(viewCell);
 
                     tableBody.appendChild(row);
                 });
             })
             .catch(error => console.error('Error:', error));
+
+            selectAllCheckbox.addEventListener('click', function() {
+            const checkboxes = document.querySelectorAll('#tableBody input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+        });
     }
 });
 </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const regId = document.getElementById('regId');
+    const terrySelect = document.getElementById('terrySelect');
+    const fromDate = document.getElementById('fromDate');
+    const toDate = document.getElementById('toDate');
+    const tableBody = document.getElementById('tableBody');
+
+    [regId, terrySelect, fromDate, toDate].forEach((element) => {
+        element.addEventListener('change', updateTable);
+    });
+
+    function updateTable() {
+        const selectedRegId = regId.value;
+        const selectedTerryId = terrySelect.value;
+        const selectedFromDate = fromDate.value;
+        const selectedToDate = toDate.value;
+        const selectAllCheckbox = document.getElementById('selectAllCheckbox');
+
+        fetch(`/fetchAiposData?regId=${selectedRegId}&terrySelect=${selectedTerryId}&fromDate=${selectedFromDate}&toDate=${selectedToDate}`)
+            .then(response => response.json())
+            .then(data => {
+                tableBody.innerHTML = ''; 
+                data.aiposData.forEach(rowData => {
+                    const row = document.createElement('tr');
+
+                    const { region, territory, dateTime, distributor, id, totalPrice } = rowData;
+
+                    const checkboxCell = document.createElement('td');
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.name = 'selectedPOs[]';
+                    checkbox.value = rowData.id; 
+                    checkboxCell.appendChild(checkbox);
+                    checkboxCell.style.textAlign = 'center';
+
+                    const regionCell = document.createElement('td');
+                    regionCell.textContent = region.regName;
+                    regionCell.style.textAlign = 'center';
+
+                    const territoryCell = document.createElement('td');
+                    territoryCell.textContent = territory.terrName;
+                    territoryCell.style.textAlign = 'center';
+
+                    const distributorCell = document.createElement('td');
+                    distributorCell.textContent = distributor.name;
+                    distributorCell.style.textAlign = 'center';
+
+                    const poNoCell = document.createElement('td');
+                    poNoCell.textContent = id;
+                    poNoCell.style.textAlign = 'center';
+
+                    const dateTimeParts = dateTime.split(' ');
+                    const dateCell = document.createElement('td');
+                    dateCell.textContent = dateTimeParts[0];
+                    dateCell.style.textAlign = 'center';
+
+                    const timeCell = document.createElement('td');
+                    timeCell.textContent = dateTimeParts[1];
+                    timeCell.style.textAlign = 'center';
+
+                    const netTotalCell = document.createElement('td');
+                    netTotalCell.textContent = `${data.netTotal}`;
+                    netTotalCell.style.textAlign = 'center';
+
+                    const viewCell = document.createElement('td');
+                    const viewLink = document.createElement('a');
+                    viewLink.textContent = 'VIEW';
+                    
+                    viewLink.href = '#';
+                    viewCell.appendChild(viewLink);
+                    viewCell.style.textAlign = 'center';
+
+                    row.appendChild(checkboxCell);
+                    row.appendChild(regionCell);
+                    row.appendChild(territoryCell);
+                    row.appendChild(distributorCell);
+                    row.appendChild(poNoCell);
+                    row.appendChild(dateCell);
+                    row.appendChild(timeCell);
+                    row.appendChild(netTotalCell);
+                    row.appendChild(viewCell);
+
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+
+            selectAllCheckbox.addEventListener('click', function() {
+            const checkboxes = document.querySelectorAll('#tableBody input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+        });
+    }
+});
+</script>
+
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -257,11 +365,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
 
                 <div class="tableMain pt-5">
-                    <div class="tableSetup">
+                    <div class="tableSetup"> 
+                        
                         <table>
                             <thead>
                                 <tr>
-                                    <th><div class="tableHeadPov">SELECT</div></th>
+                                    <th><button id="selectAllCheckbox" class="tableHeadPov thp">Select All</button></th>
                                     <th><div class="tableHeadPov">REGION</div></th>
                                     <th><div class="tableHeadPov">TERRITORY</div></th>
                                     <th><div class="tableHeadPov">DISTRIBUTOR</div></th>
@@ -280,10 +389,12 @@ document.addEventListener("DOMContentLoaded", function () {
                       
                       @if(session('role') == 'admin')
                         <div class="pt-5 btnBackPOV">
+                            <a href="{{route('homeBackView')}}" class="submiClass view addPo">SAVE AS BULK</a>
                             <a href="{{route('homeBackView')}}" class="submiClass view secondary">BACK</a>
                         </div>
                      @else
                         <div class="pt-5 btnBackPOV">
+                            <a href="{{route('homeBackView')}}" class="submiClass view addPo">SAVE AS BULK</a>
                             <a href="{{route('homeBackViewUser')}}" class="submiClass view secondary">BACK</a>
                         </div>
                     @endif
